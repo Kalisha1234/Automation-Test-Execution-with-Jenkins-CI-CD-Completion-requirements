@@ -51,13 +51,32 @@ pipeline {
         }
         success {
             echo 'Tests passed successfully!'
-            // emailext body: 'Tests passed successfully!', subject: 'Build Success', to: '<YOUR_EMAIL>'
-            // slackSend channel: '#jenkins', message: "Build ${env.BUILD_NUMBER} passed!"
+            emailext (
+                subject: "✅ Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<h2>Build Successful!</h2>
+                         <p><b>Job:</b> ${env.JOB_NAME}</p>
+                         <p><b>Build Number:</b> ${env.BUILD_NUMBER}</p>
+                         <p><b>Status:</b> SUCCESS</p>
+                         <p><b>Tests:</b> All 37 tests passed ✅</p>
+                         <p><a href='${env.BUILD_URL}'>View Build</a></p>
+                         <p><a href='${env.BUILD_URL}allure'>View Allure Report</a></p>""",
+                to: 'thecutetester01@gmail.com',
+                mimeType: 'text/html'
+            )
         }
         failure {
             echo 'Tests failed!'
-            // emailext body: 'Tests failed. Check Jenkins for details.', subject: 'Build Failed', to: '<YOUR_EMAIL>'
-            // slackSend channel: '#jenkins', message: "Build ${env.BUILD_NUMBER} failed!"
+            emailext (
+                subject: "❌ Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<h2>Build Failed!</h2>
+                         <p><b>Job:</b> ${env.JOB_NAME}</p>
+                         <p><b>Build Number:</b> ${env.BUILD_NUMBER}</p>
+                         <p><b>Status:</b> FAILURE</p>
+                         <p>Check the console output for details.</p>
+                         <p><a href='${env.BUILD_URL}console'>View Console Output</a></p>""",
+                to: 'thecutetester01@gmail.com',
+                mimeType: 'text/html'
+            )
         }
     }
 }
