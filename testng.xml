@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="FakeStore API Test Suite">
+    <test name="Products API Tests">
+        <classes>
+            <class name="org.example.products.ProductsTest"/>
+        </classes>
+    </test>
+    
+    <test name="Carts API Tests">
+        <classes>
+            <class name="org.example.carts.CartsTest"/>
+        </classes>
+    </test>
+    
+    <test name="Users API Tests">
+        <classes>
+            <class name="org.example.users.UsersTest"/>
+        </classes>
+    </test>
+    
+    <test name="Auth API Tests">
+        <classes>
+            <class name="org.example.auth.AuthTest"/>
+        </classes>
+    </test>
+</suite>
