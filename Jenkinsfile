@@ -15,19 +15,19 @@ pipeline {
         
         stage('Build') {
             steps {
-                bat 'mvn clean compile'
+                sh 'mvn clean compile'
             }
         }
         
         stage('Test') {
             steps {
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
         
         stage('Generate Allure Report') {
             steps {
-                bat 'mvn allure:report'
+                sh 'mvn allure:report'
             }
         }
         
